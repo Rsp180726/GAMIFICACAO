@@ -1,0 +1,185 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Definição das estruturas das classes
+typedef struct {
+    int id;
+    char nome[50];
+    char descricao[100];
+    float preco;
+    int categoriaId;
+} Produto;
+
+typedef struct {
+    int id;
+    char nome[50];
+    char descricao[100];
+} Categoria;
+
+typedef struct {
+    int id;
+    char nome[50];
+    char sobrenome[50];
+    char endereco[100];
+    char telefone[15];
+} Cliente;
+
+typedef struct {
+    int id;
+    int clienteId;
+    int produtos[10]; // IDs dos produtos vendidos
+    int numProdutos;
+    char data[20];
+    float valorTotal;
+} Venda;
+
+// Funções de operações para cada classe
+void cadastrarProduto(Produto *produtos, int *numProdutos, Categoria *categorias, int numCategorias);
+void cadastrarCategoria(Categoria *categorias, int *numCategorias);
+void cadastrarCliente(Cliente *clientes, int *numClientes);
+void realizarVenda(Venda *vendas, int *numVendas, Cliente *clientes, int numClientes, Produto *produtos, int numProdutos);
+
+// Função que exibe o menu e interage com o usuário
+void exibirMenu();
+
+int main() {
+    Produto produtos[100];
+    Categoria categorias[10];
+    Cliente clientes[50];
+    Venda vendas[100];
+
+    int numProdutos = 0;
+    int numCategorias = 0;
+    int numClientes = 0;
+    int numVendas = 0;
+
+    int opcao;
+    do {
+        exibirMenu();
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastrarProduto(produtos, &numProdutos, categorias, numCategorias);
+                break;
+            case 2:
+                cadastrarCategoria(categorias, &numCategorias);
+                break;
+            case 3:
+                cadastrarCliente(clientes, &numClientes);
+                break;
+            case 4:
+                realizarVenda(vendas, &numVendas, clientes, numClientes, produtos, numProdutos);
+                break;
+            case 5:
+                // Implementar funcionalidade de busca de produtos por categoria
+                
+                break;
+            case 6:
+                // Implementar funcionalidade de exibição de todas as vendas
+                break;
+            case 7:
+                // Implementar funcionalidade de busca de vendas por cliente
+                break;
+            case 8:
+                // Implementar funcionalidade de remoção de categoria
+                break;
+            case 0:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida.\n");
+        }
+    } while (opcao != 0);
+
+    return 0;
+}
+
+void exibirMenu() {
+    printf("\n=== Menu ===\n");
+    printf("1. Cadastrar Produto\n");
+    printf("2. Cadastrar Categoria\n");
+    printf("3. Cadastrar Cliente\n");
+    printf("4. Realizar Venda\n");
+    printf("5. Buscar Produtos por Categoria\n");
+    printf("6. Exibir Todas as Vendas\n");
+    printf("7. Buscar Vendas por Cliente\n");
+    printf("8. Remover Categoria\n");
+    printf("0. Sair\n");
+    printf("Escolha uma opção: ");
+}
+
+void cadastrarProduto(Produto *produtos, int *numProdutos, Categoria *categorias, int numCategorias) {
+    if (*numProdutos < 100) {
+        Produto novoProduto;
+        novoProduto.id = *numProdutos + 1;
+        printf("Nome do produto: ");
+        scanf("%s", novoProduto.nome);
+        printf("Descrição do produto: ");
+        scanf("%s", novoProduto.descricao);
+        printf("Preço do produto: ");
+        scanf("%f", &novoProduto.preco);
+        printf("ID da categoria: ");
+        scanf("%d", &novoProduto.categoriaId);
+        
+        produtos[*numProdutos] = novoProduto;
+        (*numProdutos)++;
+        printf("Produto cadastrado com sucesso!\n");
+    } else {
+        printf("Limite de produtos atingido.\n");
+    }
+}
+
+void cadastrarCategoria(Categoria *categorias, int *numCategorias) {
+    if (*numCategorias < 10) {
+        Categoria novaCategoria;
+        novaCategoria.id = *numCategorias + 1;
+        printf("Nome da categoria: ");
+        scanf("%s", novaCategoria.nome);
+        printf("Descrição da categoria: ");
+        scanf("%s", novaCategoria.descricao);
+        
+        categorias[*numCategorias] = novaCategoria;
+        (*numCategorias)++;
+        printf("Categoria cadastrada com sucesso!\n");
+    } else {
+        printf("Limite de categorias atingido.\n");
+    }
+}
+
+void cadastrarCliente(Cliente *clientes, int *numClientes) {
+    if (*numClientes < 50) {
+        Cliente novoCliente;
+        novoCliente.id = *numClientes + 1;
+        printf("Nome do cliente: ");
+        scanf("%s", novoCliente.nome);
+        printf("Sobrenome do cliente: ");
+        scanf("%s", novoCliente.sobrenome);
+        printf("Endereço do cliente: ");
+        scanf("%s", novoCliente.endereco);
+        printf("Telefone do cliente: ");
+        scanf("%s", novoCliente.telefone);
+        
+        clientes[*numClientes] = novoCliente;
+        (*numClientes)++;
+        printf("Cliente cadastrado com sucesso!\n");
+    } else {
+        printf("Limite de clientes atingido.\n");
+    }
+}
+
+void realizarVenda(Venda *vendas, int *numVendas, Cliente *clientes, int numClientes, Produto *produtos, int numProdutos) {
+    if (*numVendas < 100) {
+        Venda novaVenda;
+        novaVenda.id = *numVendas + 1;
+
+        // Preencher detalhes da venda: cliente, produtos, data etc.
+
+        vendas[*numVendas] = novaVenda;
+        (*numVendas)++;
+        printf("Venda realizada com sucesso!\n");
+    } else {
+        printf("Limite de vendas atingido.\n");
+    }
+}
