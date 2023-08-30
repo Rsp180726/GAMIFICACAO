@@ -5,14 +5,23 @@ Para começar a executar o código, você precisará de um compilador C ou C++, 
 O código irá exibir um menu com as seguintes opções:
 
 1- Cadastrar Produto
+
 2- Cadastrar Categoria
+
 3- Cadastrar Cliente
+
 4- Realizar Venda
+
 5- Buscar Produtos por Categoria
+
 6- Exibir Todas as Vendas
+
 7- Buscar Vendas por Cliente
+
 8- Remover Categoria
+
 0- Sair
+
 Para escolher uma opção, digite o número correspondente e pressione Enter.
 
 Para cadastrar um produto, digite o nome, a descrição, o preço e o ID da categoria do produto.
