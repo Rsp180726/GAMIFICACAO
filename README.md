@@ -43,6 +43,7 @@ Para remover uma categoria, digite o ID da categoria.
 Para sair do programa, digite 0.
 
 Assim ficou o modelo de exemplo.
+
 === Menu ===
 1. Cadastrar Produto
 2. Cadastrar Categoria
